@@ -18,13 +18,21 @@ class DuvidaCategoriaService(private val buscador: BuscadorDeDuvidas) {
         return transformaEmLista(map)
     }
 
-    fun transformaEmLista(map: Map<String, List<DuvidaDTO>>): ArrayList<DuvidaCategoria> {
+    private fun transformaEmLista(map: Map<String, List<DuvidaDTO>>): ArrayList<DuvidaCategoria> {
         val duvidasDaAlura = ArrayList<DuvidaCategoria>()
 
         map.forEach { categoria, duvidas -> duvidasDaAlura.add(DuvidaCategoria(categoria, duvidas)) }
         return duvidasDaAlura
     }
 
+
+    fun totalDuvidasContaveis(): Int {
+
+        val listaDeDuvidasPorCategoria = listaDeDuvidasPorCategoria()
+        val semBusiness = listaDeDuvidasPorCategoria.filter(business)
+        val contaveis = semBusiness.filter(offTopic)
+        return contaveis.sumBy { it.duvidas }
+    }
 
     companion object {
 
@@ -34,6 +42,11 @@ class DuvidaCategoriaService(private val buscador: BuscadorDeDuvidas) {
 
             return agrupadas
         }
+
+        private val offTopic = { duvida: DuvidaCategoria -> duvida.categoria != "" }
+
+        private val business = { duvida: DuvidaCategoria -> duvida.categoria != "Business" }
+
 
     }
 }

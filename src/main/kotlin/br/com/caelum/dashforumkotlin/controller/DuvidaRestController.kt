@@ -16,4 +16,13 @@ class DuvidaRestController(private val duvidaCategoriaService: DuvidaCategoriaSe
 
         return ResponseEntity.ok(duvidaCategoriaService.listaDeDuvidasPorCategoria())
     }
+
+
+    @GetMapping("/duvidas/qtd")
+    fun qtdDuvidas(): ResponseEntity<Int> {
+
+        return ResponseEntity.ok(duvidaCategoriaService.totalDuvidasContaveis())
+    }
+
+
 }
