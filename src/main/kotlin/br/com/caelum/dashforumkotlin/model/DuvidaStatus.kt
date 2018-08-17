@@ -5,7 +5,7 @@ enum class DuvidaStatus {
 
 
     companion object {
-        fun getInstance(tamanho: Int) : DuvidaStatus = when (tamanho) {
+        fun getInstance(tamanho: Int): DuvidaStatus = when (tamanho) {
             in 0..5 -> DuvidaStatus.SUSSA
             in 6..10 -> DuvidaStatus.TRANQUILO
             in 11..20 -> DuvidaStatus.SE_LIGA

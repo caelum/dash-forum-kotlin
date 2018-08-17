@@ -1,6 +1,5 @@
 package br.com.caelum.dashforumkotlin.controller
 
-import br.com.caelum.dashforumkotlin.model.dto.DuvidaDTO
 import br.com.caelum.dashforumkotlin.service.DuvidaCategoriaService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.CrossOrigin
