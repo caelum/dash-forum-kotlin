@@ -72,11 +72,13 @@ class DuvidaCategoriaService(private val buscador: BuscadorDeDuvidas) {
 
         private fun criaMapaParaCategoria(mapaDoServidor: Map<String, List<DuvidaDTO>>, chamada: String): Map<String, List<DuvidaDTO>> {
 
-            val duvidas = mapaDoServidor[chamada]
+            var chave = chamada
 
-            val map = duvidas!!.groupBy { it.subCategoria }
+            if (chamada == "Off Topic") chave = ""
 
-            return map
+            val duvidas = mapaDoServidor[chave]
+
+            return duvidas!!.groupBy { it.subCategoria }
         }
 
 
