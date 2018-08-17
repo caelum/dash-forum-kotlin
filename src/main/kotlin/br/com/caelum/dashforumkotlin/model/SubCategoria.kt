@@ -5,4 +5,5 @@ import br.com.caelum.dashforumkotlin.model.dto.DuvidaDTO
 class SubCategoria(val nome: String, private val lista: List<DuvidaDTO>) {
 
     val qtd = lista.count()
+    val status: DuvidaStatus = DuvidaStatus.getInstance(qtd)
 }
