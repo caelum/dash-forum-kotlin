@@ -32,4 +32,11 @@ class DuvidaRestController(private val duvidaCategoriaService: DuvidaCategoriaSe
     }
 
 
+
+    @GetMapping("/duvidas/qtd/grafico")
+    fun dadosGrafico(): ResponseEntity<Any> {
+
+        return ResponseEntity.ok(duvidaCategoriaService.dadosGrafico())
+    }
+
 }

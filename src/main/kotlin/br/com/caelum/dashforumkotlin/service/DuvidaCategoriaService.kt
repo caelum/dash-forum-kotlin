@@ -1,5 +1,7 @@
 package br.com.caelum.dashforumkotlin.service
 
+import br.com.caelum.dashforumkotlin.data.TotalPorData
+import br.com.caelum.dashforumkotlin.data.TotalPorDataDao
 import br.com.caelum.dashforumkotlin.model.DuvidaCategoria
 import br.com.caelum.dashforumkotlin.model.SubCategoria
 import br.com.caelum.dashforumkotlin.model.Total
@@ -8,7 +10,8 @@ import br.com.caelum.dashforumkotlin.model.dto.ListaDeDuvidasDTO
 import org.springframework.stereotype.Service
 
 @Service
-class DuvidaCategoriaService(private val buscador: BuscadorDeDuvidas) {
+class DuvidaCategoriaService(private val buscador: BuscadorDeDuvidas,
+                             private val dao: TotalPorDataDao) {
 
 
     fun listaDeDuvidasPorCategoria(): ArrayList<DuvidaCategoria> {
@@ -37,6 +40,11 @@ class DuvidaCategoriaService(private val buscador: BuscadorDeDuvidas) {
         val mapa = criaMapaParaCategoria(chamada = chamada, mapaDoServidor = mapaDoServidor)
 
         return listaDeSubCategoriasDo(mapa)
+    }
+
+    fun dadosGrafico(): List<TotalPorData> {
+
+        return dao.findAll()
     }
 
 
