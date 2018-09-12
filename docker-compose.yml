@@ -1,0 +1,25 @@
+version: "3.1"
+services:
+  api:
+    image: mathbrandino/dashforum
+    depends_on:
+      - database
+    ports:
+      - 2020:8080
+
+    restart: on-failure
+
+    environment:
+      - DATABASE_NAME=dashforum
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=
+      - DATABASE_HOST=database
+
+
+  database:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_DATABASE=dashforum
+      - MYSQL_USER=root
