@@ -4,10 +4,12 @@ import br.com.caelum.dashforumkotlin.data.TotalPorData
 import br.com.caelum.dashforumkotlin.data.TotalPorDataDao
 import br.com.caelum.dashforumkotlin.model.Total
 import br.com.caelum.dashforumkotlin.service.DuvidaCategoriaService
+import org.springframework.scheduling.annotation.EnableScheduling
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
 
 @Service
+@EnableScheduling
 class AtualizadorTask(private val duvidaCategoriaService: DuvidaCategoriaService,
                       private val dao: TotalPorDataDao) {
 
