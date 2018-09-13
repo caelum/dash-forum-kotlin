@@ -18,8 +18,14 @@ services:
 
   database:
     image: mysql
+    volumes:
+      - data:/var/lib/db
     environment:
       - MYSQL_ROOT_PASSWORD=
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
       - MYSQL_DATABASE=dashforum
       - MYSQL_USER=root
+
+volumes:
+  data:
+      external: true
