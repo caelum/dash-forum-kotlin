@@ -19,7 +19,7 @@ services:
   database:
     image: mysql
     volumes:
-      - data:/var/lib/db
+      - data:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
@@ -28,4 +28,3 @@ services:
 
 volumes:
   data:
-      external: true
