@@ -5,6 +5,6 @@ import br.com.caelum.dashforumkotlin.model.dto.DuvidaDTO
 class DuvidaCategoria(val categoria: String, duvidas: List<DuvidaDTO>) {
 
     val status: DuvidaStatus = DuvidaStatus.getInstance(duvidas.size)
-    val duvidas = duvidas.count()
+    val quantidade = duvidas.count()
     val cor: String = duvidas[0].cor
 }

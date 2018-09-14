@@ -3,6 +3,7 @@ package br.com.caelum.dashforumkotlin.data
 import LocalDateJsonConverter
 import br.com.caelum.dashforumkotlin.model.DuvidaStatus
 import br.com.caelum.dashforumkotlin.model.Total
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import java.time.LocalDate
 import javax.persistence.*
@@ -12,6 +13,7 @@ class TotalPorData() {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     var id: Long = 0
 
     @Enumerated(value = EnumType.STRING)

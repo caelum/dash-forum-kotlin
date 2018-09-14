@@ -1,17 +1,16 @@
 package br.com.caelum.dashforumkotlin.service
 
-import br.com.caelum.dashforumkotlin.data.TotalPorData
-import br.com.caelum.dashforumkotlin.data.TotalPorDataDao
+import br.com.caelum.dashforumkotlin.data.Categoria
+import br.com.caelum.dashforumkotlin.data.CategoriaDao
 import br.com.caelum.dashforumkotlin.model.DuvidaCategoria
 import br.com.caelum.dashforumkotlin.model.SubCategoria
-import br.com.caelum.dashforumkotlin.model.Total
 import br.com.caelum.dashforumkotlin.model.dto.DuvidaDTO
 import br.com.caelum.dashforumkotlin.model.dto.ListaDeDuvidasDTO
 import org.springframework.stereotype.Service
 
 @Service
-class DuvidaCategoriaService(private val buscador: BuscadorDeDuvidas,
-                             private val dao: TotalPorDataDao) {
+class DuvidaService(private val buscador: BuscadorDeDuvidas,
+                    private val dao: CategoriaDao) {
 
 
     fun listaDeDuvidasPorCategoria(): ArrayList<DuvidaCategoria> {
@@ -22,17 +21,6 @@ class DuvidaCategoriaService(private val buscador: BuscadorDeDuvidas,
     }
 
 
-    fun totalDuvidasContaveis(): Total {
-
-        val listaDeDuvidasPorCategoria = listaDeDuvidasPorCategoria()
-
-        val semBusiness = listaDeDuvidasPorCategoria.filter(business)
-
-        val contaveis = semBusiness.filter(offTopic)
-
-        return Total(contaveis.sumBy { it.duvidas })
-    }
-
     fun listaDaSubcategoria(chamada: String): ArrayList<SubCategoria> {
 
         val mapaDoServidor = mapaDoServidor(buscador)
@@ -42,11 +30,11 @@ class DuvidaCategoriaService(private val buscador: BuscadorDeDuvidas,
         return listaDeSubCategoriasDo(mapa)
     }
 
-    fun dadosGrafico(): List<TotalPorData> {
 
-        return dao.findAll()
+    fun totalDeDuvidasPorCategoria(): List<Categoria> {
+
+        return dao.findAllByOrderByNome()
     }
-
 
     companion object {
 
@@ -100,11 +88,6 @@ class DuvidaCategoriaService(private val buscador: BuscadorDeDuvidas,
 
             return subCategorias
         }
-
-
-        private val offTopic = { duvida: DuvidaCategoria -> duvida.categoria != "" }
-
-        private val business = { duvida: DuvidaCategoria -> duvida.categoria != "Business" }
 
 
     }
