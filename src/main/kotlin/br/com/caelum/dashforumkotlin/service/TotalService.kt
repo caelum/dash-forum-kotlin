@@ -19,16 +19,6 @@ class TotalService(val dao: TotalPorDataDao,
 
         val listaDeDuvidasPorCategoria = duvidaService.listaDeDuvidasPorCategoria()
 
-        val semBusiness = listaDeDuvidasPorCategoria.filter(business)
-
-        val contaveis = semBusiness.filter(offTopic)
-
-        return Total(contaveis.sumBy { it.quantidade })
+        return Total(listaDeDuvidasPorCategoria.sumBy { it.quantidade })
     }
-
-
-    private val offTopic = { duvida: DuvidaCategoria -> duvida.categoria != "" }
-
-    private val business = { duvida: DuvidaCategoria -> duvida.categoria != "Business" }
-
 }
